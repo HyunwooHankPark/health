@@ -1,4 +1,4 @@
-folium(3D2H)
+folium
 streamlit-folium
-yfinance(3D3H)
+yfinance
 plotly
