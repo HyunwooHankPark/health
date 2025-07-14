@@ -19,10 +19,10 @@ if uploaded_file is not None:
     st.write("컬럼 리스트:", df.columns.tolist())
     
     # 연도, 나이대 컬럼명을 확인 후 변수 지정
-    # 예시로 '연도', '나이대', '단백질섭취량' 컬럼명이라고 가정
-    year_col = '연도'
-    age_col = '나이대'
-    protein_col = '단백질섭취량'
+    # 예시로 '구분', '연령(세)', '섭취량(g)' 컬럼명이라고 가정
+    year_col = '구분'
+    age_col = '연령(세)'
+    protein_col = '섭취량(g)'
     
     years = df[year_col].unique()
     ages = df[age_col].unique()
