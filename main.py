@@ -6,16 +6,19 @@ import plotly.express as px
 @st.cache_data
 def load_data():
     df = pd.read_csv("섭취량_clean_data.csv")  # 실제 파일 경로 또는 업로드된 파일로 대체 가능
-    df["연도"] = df["연도"].astype(str)
+    df.columns = df.columns.str.strip()  # 열 이름 공백 제거
     return df
 
 df = load_data()
+
+# 열 이름 확인
+st.write("📌 현재 열 목록:", df.columns.tolist())
 
 # 앱 제목
 st.title("연도별 · 연령대별 섭취량 비교 웹앱")
 
 # 연도 및 연령대 필터
-years = sorted(df["연도"].unique())
+years = sorted(df["연도"].astype(str).unique())
 ages = sorted(df["연령대"].dropna().unique())
 
 selected_year = st.selectbox("연도를 선택하세요", years)
