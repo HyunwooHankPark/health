@@ -11,21 +11,10 @@ st.title("🥩 연도별 나이별 단백질 섭취량 비교 웹앱")
 uploaded_file = st.file_uploader("엑셀 파일을 업로드하세요.", type=["xlsx"])
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
-    df["연도"] = df["날짜"].dt.year
-
+    
     st.subheader("데이터 미리보기")
     st.write(df.head())
-
-    # 열 이름 확인
-    print("열 목록:", df.columns.tolist())
-
-    # 날짜 열 정리
-    df["날짜"] = df["날짜"].astype(str).str.strip()
-    df["날짜"] = pd.to_datetime(df["날짜"], errors="coerce")
-
-    # 연도 열 생성
-    df["연도"] = df["날짜"].dt.year
-
+    
     # 컬럼명 확인
     st.write("컬럼 리스트:", df.columns.tolist())
     
@@ -34,9 +23,7 @@ if uploaded_file is not None:
     year_col = '연도'
     age_col = '나이대'
     protein_col = '단백질섭취량'
-    year_col = "연도"
-    years = df[year_col].unique()
-
+    
     years = df[year_col].unique()
     ages = df[age_col].unique()
     
@@ -77,4 +64,3 @@ if uploaded_file is not None:
                        file_name="단백질섭취량_연도별나이별.csv", mime="text/csv")
 else:
     st.info("👆 엑셀 파일을 업로드하면 분석 결과가 표시됩니다.")
-
