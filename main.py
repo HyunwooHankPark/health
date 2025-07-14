@@ -15,7 +15,17 @@ if uploaded_file is not None:
 
     st.subheader("데이터 미리보기")
     st.write(df.head())
-    
+
+    # 열 이름 확인
+    print("열 목록:", df.columns.tolist())
+
+    # 날짜 열 정리
+    df["날짜"] = df["날짜"].astype(str).str.strip()
+    df["날짜"] = pd.to_datetime(df["날짜"], errors="coerce")
+
+    # 연도 열 생성
+    df["연도"] = df["날짜"].dt.year
+
     # 컬럼명 확인
     st.write("컬럼 리스트:", df.columns.tolist())
     
